@@ -32,6 +32,9 @@ The demo constist of three levels: green < red > blue. You move through them by 
 
 ## Known bugs:
   - Loading from a text file doesn't work (something wrong with json parsing, I think).
-  
+ 
+Want to see more from me?
+Follow me on Itch.io - cool Godot stuff coming soon! - https://radmatt.itch.io/
+ 
 [screenshot]: https://i.imgur.com/DM68NuH.png
 
