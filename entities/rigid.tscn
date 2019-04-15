@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://img/simple.png" type="Texture" id=1]
+
+[sub_resource type="PhysicsMaterial" id=1]
+rough = true
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 23.0217
+
+[node name="rigid" type="RigidBody2D" groups=[
+"persist",
+]]
+editor/display_folded = true
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 0.5 )
+shape = SubResource( 2 )
+
+[node name="simple2" type="Sprite" parent="."]
+modulate = Color( 0.690196, 0.690196, 0.690196, 1 )
+position = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 102, 14, 45, 45 )
+
+[node name="simple" type="Sprite" parent="."]
+position = Vector2( 0.5, -5.5 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 102, 14, 45, 45 )
+
