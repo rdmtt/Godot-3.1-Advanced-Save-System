@@ -13,7 +13,7 @@ The demo constist of three levels: green < red > blue. You move through them by 
 
 * **Entering a level**.
 
-* **If the map has been entered before**:
+* **If the map has NOT been entered before**:
   - Load the original map.
   - Let the player change stuff.
   - Save when exiting or saving to a slot.
