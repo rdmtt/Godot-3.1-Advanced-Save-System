@@ -190,7 +190,6 @@ func save_to_slot(slot_name):
 
 
 func load_from_slot(slot_name):
-	print(slot_name)
 	current_data = slots[slot_name].duplicate()
 	visited_maps = slots[slot_name]["visited_maps"].duplicate()
 	last_saved_slot = slots[slot_name]["last_saved_slot"]
@@ -205,12 +204,10 @@ func load_from_slot(slot_name):
 # EXPORTING TO FILES NOT WORKING PROPERLY
 
 func save_to_file(slot):
-	print("slot_"+str(slot))
 	save_to_slot("slot_"+str(slot))
 	yield(time(0.1), "timeout")
 	var save_game = File.new()
-	print(paths[slot-1])
-	print(OS.get_user_data_dir())
+	print("Saving to: " + OS.get_user_data_dir())
 	save_game.open(paths[slot-1], File.WRITE)
 	save_game.store_line(to_json(current_data.duplicate()))
 #	print(save_game.get_as_text())
@@ -223,11 +220,9 @@ func load_from_file(slot):
 	var data = parse_json(save_game.get_as_text())
 #	var data = parse_json(save_game.get_line())
 	yield(time(0.01), "timeout")
-	print("slot_"+str(slot))
 	slots["slot_"+str(slot-1)] = data
 	save_game.close()
 
 	yield(time(0.01), "timeout")
 
 	load_from_slot("slot_"+str(slot))
-
