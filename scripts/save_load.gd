@@ -15,7 +15,7 @@
 extends "res://scripts/globals.gd"
 
 # not working properly
-#var paths = ["user://slot_1.save", "user://slot_2.save", "user://slot_3.save"]
+var paths = ["user://slot_1.save", "user://slot_2.save", "user://slot_3.save"]
 
 var last_saved_slot = 0
 
@@ -190,7 +190,6 @@ func save_to_slot(slot_name):
 
 
 func load_from_slot(slot_name):
-
 	current_data = slots[slot_name].duplicate()
 	visited_maps = slots[slot_name]["visited_maps"].duplicate()
 	last_saved_slot = slots[slot_name]["last_saved_slot"]
@@ -204,26 +203,26 @@ func load_from_slot(slot_name):
 
 # EXPORTING TO FILES NOT WORKING PROPERLY
 
-#func save_to_file(slot):
-#	save_to_slot("slot_"+str(slot))
-#	yield(time(0.1), "timeout")
-#	var save_game = File.new()
-#	save_game.open(paths[slot+1], File.WRITE)
-#	save_game.store_line(to_json(current_data.duplicate()))
-##	print(save_game.get_as_text())
-#	save_game.close()
+func save_to_file(slot):
+	save_to_slot("slot_"+str(slot))
+	yield(time(0.1), "timeout")
+	var save_game = File.new()
+	print("Saving to: " + OS.get_user_data_dir())
+	save_game.open(paths[slot-1], File.WRITE)
+	save_game.store_line(to_json(current_data.duplicate()))
+#	print(save_game.get_as_text())
+	save_game.close()
 
 
-#func load_from_file(slot):
-#	var save_game = File.new()
-#	save_game.open(paths[slot+1], File.READ)
-#	var data = parse_json(save_game.get_as_text())
-##	var data = parse_json(save_game.get_line())
-#	yield(time(0.01), "timeout")
-#	slots["slot_"+str(slot)] = data
-#	save_game.close()
-#
-#	yield(time(0.01), "timeout")
-#
-#	load_from_slot("slot_"+str(slot))
+func load_from_file(slot):
+	var save_game = File.new()
+	save_game.open(paths[slot-1], File.READ)
+	var data = parse_json(save_game.get_as_text())
+#	var data = parse_json(save_game.get_line())
+	yield(time(0.01), "timeout")
+	slots["slot_"+str(slot-1)] = data
+	save_game.close()
 
+	yield(time(0.01), "timeout")
+
+	load_from_slot("slot_"+str(slot))
